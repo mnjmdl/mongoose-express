@@ -14,14 +14,21 @@ const addressSchema = new Schema<Address>({
 
 const userSchema = new Schema<IUser>({
   userId: { type: Number, required: true, unique: true },
-  userName: { type: String, required: true, unique: true },
-  password: { type: String },
+  username: { type: String, required: true, unique: true },
+  password: { type: String, select: false },
   fullName: fullNameSchema,
   age: { type: Number },
   email: { type: String },
   isActive: { type: Boolean },
-  hobbies: { type: [] },
+  hobbies: [],
   address: addressSchema,
 });
+
+// userSchema.methods.toJSON = function () {
+//   const obj = this.toObject();
+//   // obj.password = ;
+//   delete obj.password;
+//   return obj;
+// };
 
 export const User = model<IUser>('User', userSchema);
