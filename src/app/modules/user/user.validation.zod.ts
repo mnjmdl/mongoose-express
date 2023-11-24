@@ -41,6 +41,12 @@ const addressSchemaZod = z.object({
     .max(20, 'Max 20 characters allow'),
 });
 
+const orderorderSchemaZod = z.object({
+  productName: z.string().trim(),
+  price: z.number(),
+  quantity: z.number(),
+});
+
 const userSchemaZod = z.object({
   userId: z.number({}),
   username: z
@@ -62,6 +68,7 @@ const userSchemaZod = z.object({
   isActive: z.boolean(),
   hobbies: z.array(z.string()),
   address: addressSchemaZod,
+  orders: z.array(orderorderSchemaZod).optional(),
 });
 
 export default userSchemaZod;

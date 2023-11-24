@@ -5,6 +5,8 @@ import { User } from './user.model';
 // Create User
 const createUserIntoDB = async (user: IUser) => {
   if (await User.isExists(Number(user.userId))) {
+    throw new Error(`User ID: ${user.userId} already exists`);
+  } else {
     const newUser = await User.create(user);
     if (newUser) {
       const result = await User.findOne({
@@ -12,8 +14,6 @@ const createUserIntoDB = async (user: IUser) => {
       }).select({ _id: 0, password: 0, __v: 0 });
       return result;
     }
-  } else {
-    throw new Error(`User ID: ${user.userId} not exists`);
   }
 };
 
@@ -114,18 +114,26 @@ const getAllOrderByUserId = async (id: string) => {
     const orders = await User.findOne({
       userId: { $eq: Number(id) },
     }).select({ orders: 1, _id: 0 });
-    return orders;
+    // return orders;
+    if ((orders?.orders?.length as number) > 0) {
+      return orders;
+    } else return 'No Order Found';
+    return;
   } else {
     throw new Error(`User ID: ${id} not exists`);
   }
 };
+
 // Total Price by user id
 const getTotalPriceByUserId = async (id: string) => {
   if (await User.isExists(Number(id))) {
     const user = await User.findOne({
       userId: { $eq: Number(id) },
     }).select({ orders: 1, _id: 0 });
-    return user?.orders.reduce((price, order: any) => price + order.price, 0);
+    return user?.orders?.reduce(
+      (price: any, order: any) => price + order.price * order.quantity,
+      0,
+    );
   } else {
     throw new Error(`User ID: ${id} not exists`);
   }

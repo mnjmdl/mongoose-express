@@ -11,7 +11,7 @@ const createUser = async (req: Request, res: Response) => {
     // data validation using zod
     const userValidateData = userSchemaZod.parse(userData);
 
-    // const result = await UserServices.createUserIntoDB(user);
+    // const result = await UserServices.createUserIntoDB(userData);
     const result = await UserServices.createUserIntoDB(userValidateData);
 
     res.status(200).json({
@@ -143,6 +143,7 @@ const updateOrder = async (req: Request, res: Response) => {
   }
 };
 
+// /:userId/orders
 const getAllOrderByUserId = async (req: Request, res: Response) => {
   const { userId: id } = req.params;
   if (await User.isExists(Number(id))) {

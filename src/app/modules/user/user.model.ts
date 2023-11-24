@@ -28,9 +28,7 @@ const orderSchema = new Schema<IOrder>(
     price: { type: Number },
     quantity: { type: Number },
   },
-  {
-    _id: false,
-  },
+  { _id: false },
 );
 
 const userSchema = new Schema<IUser>({
@@ -43,9 +41,7 @@ const userSchema = new Schema<IUser>({
   isActive: { type: Boolean },
   hobbies: { type: [String] },
   address: addressSchema,
-  orders: {
-    type: [orderSchema],
-  },
+  orders: [orderSchema],
 });
 
 // userSchema.methods.toJSON = function () {
