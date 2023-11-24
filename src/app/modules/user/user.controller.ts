@@ -2,6 +2,7 @@
 import { Request, Response } from 'express';
 import { UserServices } from './user.services';
 import userSchemaZod from './user.validation.zod';
+import { User } from './user.model';
 
 const createUser = async (req: Request, res: Response) => {
   try {
@@ -142,6 +143,59 @@ const updateOrder = async (req: Request, res: Response) => {
   }
 };
 
+const getAllOrderByUserId = async (req: Request, res: Response) => {
+  const { userId: id } = req.params;
+  if (await User.isExists(Number(id))) {
+    try {
+      const orders = await UserServices.getAllOrderByUserId(id);
+      res.status(200).json({
+        success: true,
+        message: `Order fetched successfully!`,
+        data: orders,
+      });
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: 'Orders not found',
+        error: {
+          code: 404,
+          description: 'Orders not found!',
+        },
+      });
+    }
+  } else {
+    res.status(500).json({
+      success: false,
+      message: 'User not found',
+      error: {
+        code: 404,
+        description: 'User not found!',
+      },
+    });
+  }
+};
+
+const getTotalPriceByUserId = async (req: Request, res: Response) => {
+  const { userId: id } = req.params;
+  try {
+    const totalPrice = await UserServices.getTotalPriceByUserId(id);
+    res.status(200).json({
+      success: true,
+      message: `Order Price fetched successfully!`,
+      data: { totalPrice: totalPrice },
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Orders not found',
+      error: {
+        code: 404,
+        description: 'Orders not found!',
+      },
+    });
+  }
+};
+
 export const UserControllers = {
   createUser,
   getUsers,
@@ -149,4 +203,6 @@ export const UserControllers = {
   updateOneUser,
   deleteUserById,
   updateOrder,
+  getAllOrderByUserId,
+  getTotalPriceByUserId,
 };
