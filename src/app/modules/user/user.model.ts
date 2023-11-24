@@ -1,16 +1,24 @@
 import { Schema, model } from 'mongoose';
-import { Address, FullName, IUser } from './user.interface';
+import { Address, FullName, IUser, UserModel } from './user.interface';
 
-const fullNameSchema = new Schema<FullName>({
-  firstName: { type: String },
-  lastName: { type: String },
-});
+const fullNameSchema = new Schema<FullName>(
+  {
+    firstName: { type: String },
+    lastName: { type: String },
+  },
+  {
+    _id: false,
+  },
+);
 
-const addressSchema = new Schema<Address>({
-  street: { type: String },
-  city: { type: String },
-  country: { type: String },
-});
+const addressSchema = new Schema<Address>(
+  {
+    street: { type: String },
+    city: { type: String },
+    country: { type: String },
+  },
+  { _id: false },
+);
 
 const userSchema = new Schema<IUser>({
   userId: { type: Number, required: true, unique: true },
@@ -31,4 +39,11 @@ const userSchema = new Schema<IUser>({
 //   return obj;
 // };
 
-export const User = model<IUser>('User', userSchema);
+// Static
+
+userSchema.statics.isExists = async function (id: string) {
+  const existingUser = await User.findOne({ userId: { $eq: Number(id) } });
+  return existingUser?.userId;
+};
+
+export const User = model<IUser, UserModel>('User', userSchema);
