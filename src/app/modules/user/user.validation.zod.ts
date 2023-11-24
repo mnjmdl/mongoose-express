@@ -7,14 +7,14 @@ const fullNameSchemaZod = z.object({
       invalid_type_error: 'Name must be a string',
     })
     .trim()
-    .max(10, 'Must be 100 or less characters long')
+    .max(10, 'Must be 10 or less characters long')
     .regex(new RegExp(/^[A-Z]/), 'Name should be Capitalized'),
   lastName: z
     .string({
       invalid_type_error: 'Name must be a string',
     })
     .trim()
-    .max(100),
+    .max(15, 'Max 15 characters allow'),
 });
 
 const addressSchemaZod = z.object({
@@ -24,21 +24,21 @@ const addressSchemaZod = z.object({
       invalid_type_error: 'Value must be a string',
     })
     .trim()
-    .max(200),
+    .max(20, 'Max 20 characters allow'),
   city: z
     .string({
       required_error: 'Value is required',
       invalid_type_error: 'Value must be a string',
     })
     .trim()
-    .max(200),
+    .max(20, 'Max 20 characters allow'),
   country: z
     .string({
       required_error: 'Value is required',
       invalid_type_error: 'Value must be a string',
     })
     .trim()
-    .max(200),
+    .max(20, 'Max 20 characters allow'),
 });
 
 const userSchemaZod = z.object({
@@ -49,8 +49,8 @@ const userSchemaZod = z.object({
       invalid_type_error: 'Value must be a string',
     })
     .trim()
-    .max(100),
-  password: z.string(),
+    .max(20, 'Max 20 characters allow'),
+  password: z.string().max(30),
   fullName: fullNameSchemaZod,
   age: z.number(),
   email: z
