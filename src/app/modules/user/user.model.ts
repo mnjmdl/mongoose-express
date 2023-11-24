@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
-import { Address, FullName, IUser, UserModel } from './user.interface';
+import { Address, FullName, IOrder, IUser, UserModel } from './user.interface';
 import config from '../../config';
 
 const fullNameSchema = new Schema<FullName>(
@@ -22,6 +22,17 @@ const addressSchema = new Schema<Address>(
   { _id: false },
 );
 
+const orderSchema = new Schema<IOrder>(
+  {
+    productName: { type: String },
+    price: { type: Number },
+    quantity: { type: Number },
+  },
+  {
+    _id: false,
+  },
+);
+
 const userSchema = new Schema<IUser>({
   userId: { type: Number, required: true, unique: true },
   username: { type: String, required: true, unique: true },
@@ -30,8 +41,11 @@ const userSchema = new Schema<IUser>({
   age: { type: Number },
   email: { type: String },
   isActive: { type: Boolean },
-  hobbies: [],
+  hobbies: { type: [String] },
   address: addressSchema,
+  orders: {
+    type: [orderSchema],
+  },
 });
 
 // userSchema.methods.toJSON = function () {

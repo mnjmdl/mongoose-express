@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IUser } from './user.interface';
+import { IOrder, IUser } from './user.interface';
 import { User } from './user.model';
 
 // Create User
@@ -47,30 +47,37 @@ const getUserById = async (id: string) => {
 const updateOneUser = async (id: string, user: IUser) => {
   if (await User.isExists(Number(Number(id)))) {
     try {
-      // User.findOneAndUpdate({ userId: Number(id) }, { User: user });
-      const doc = await User.findOne({ userId: Number(user.userId) });
-      if (doc !== null) {
-        doc.fullName.firstName = user.fullName.firstName
-          ? user.fullName.firstName
-          : doc.fullName.firstName;
-        doc.fullName.lastName = user.fullName.lastName
-          ? user.fullName.lastName
-          : doc.fullName.lastName;
-        doc.age = user.age ? user.age : doc.age;
-        doc.email = user.email ? user.email : doc.email;
-        doc.isActive = user.isActive ? user.isActive : doc.isActive;
-        doc.hobbies = user.hobbies ? user.hobbies : doc.hobbies;
-        doc.address.street = user.address.street
-          ? user.address.street
-          : doc.address.street;
-        doc.address.city = user.address.city
-          ? user.address.city
-          : doc.address.city;
-        doc.address.country = user.address.country
-          ? user.address.country
-          : doc.address.country;
-        await doc?.save();
-      }
+      User.findOneAndUpdate(
+        { userId: Number(id) },
+        {
+          $set: {
+            'fullName.firs': user.fullName.firstName,
+          },
+        },
+      );
+      // const doc = await User.findOne({ userId: Number(user.userId) });
+      // if (doc !== null) {
+      //   doc.fullName.firstName = user.fullName.firstName
+      //     ? user.fullName.firstName
+      //     : doc.fullName.firstName;
+      //   doc.fullName.lastName = user.fullName.lastName
+      //     ? user.fullName.lastName
+      //     : doc.fullName.lastName;
+      //   doc.age = user.age ? user.age : doc.age;
+      //   doc.email = user.email ? user.email : doc.email;
+      //   doc.isActive = user.isActive ? user.isActive : doc.isActive;
+      //   doc.hobbies = user.hobbies ? user.hobbies : doc.hobbies;
+      //   doc.address.street = user.address.street
+      //     ? user.address.street
+      //     : doc.address.street;
+      //   doc.address.city = user.address.city
+      //     ? user.address.city
+      //     : doc.address.city;
+      //   doc.address.country = user.address.country
+      //     ? user.address.country
+      //     : doc.address.country;
+      //   await doc?.save();
+      // }
     } catch (err: any) {
       throw new Error(err.message);
     }
@@ -89,10 +96,28 @@ const deleteUserFromDB = async (id: string) => {
   }
 };
 
+const updateOrder = async (id: string, order: IOrder) => {
+  if (await User.isExists(Number(id))) {
+    await User.updateOne(
+      { userId: Number(id) },
+      { $addToSet: { orders: order } },
+    )
+      .then((result) => {
+        return result;
+      })
+      .catch((err) => {
+        return err;
+      });
+  } else {
+    throw new Error(`User ID: ${id} not exists`);
+  }
+};
+
 export const UserServices = {
   createUserIntoDB,
   getAllUserFromDB,
   getUserById,
   updateOneUser,
   deleteUserFromDB,
+  updateOrder,
 };

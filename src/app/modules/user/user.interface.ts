@@ -11,7 +11,7 @@ export type Address = {
   country: string;
 };
 
-export type Orders = {
+export type IOrder = {
   productName: string;
   price: number;
   quantity: number;
@@ -27,7 +27,7 @@ export type IUser = {
   isActive: boolean;
   hobbies?: string[];
   address: Address;
-  orders?: [];
+  orders: [];
 };
 
 export interface UserModel extends Model<IUser> {
