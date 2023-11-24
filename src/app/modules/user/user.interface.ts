@@ -25,7 +25,7 @@ export type IUser = {
   age: number;
   email: string;
   isActive: boolean;
-  hobbies: [];
+  hobbies?: string[];
   address: Address;
   orders?: [];
 };
