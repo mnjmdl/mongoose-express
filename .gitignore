@@ -1,5 +1,5 @@
 node_modules
-dist
-.env
-.eslintrc.js
-.gitignore
+# dist
+# .env
+# .eslintrc.js
+# .gitignore
