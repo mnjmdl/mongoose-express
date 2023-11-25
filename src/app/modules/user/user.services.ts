@@ -48,9 +48,11 @@ const getUserById = async (id: string) => {
 
 // Update User
 const updateOneUser = async (id: string, user: IUser) => {
-  if (await User.isExists(Number(Number(id)))) {
+  console.log(id);
+  if (await User.isExists(Number(id))) {
     try {
       const doc = await User.findOne({ userId: Number(user.userId) });
+      console.log(doc);
       if (doc !== null) {
         doc.fullName.firstName = user.fullName.firstName
           ? user.fullName.firstName
