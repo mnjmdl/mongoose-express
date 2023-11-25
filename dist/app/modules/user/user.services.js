@@ -58,9 +58,11 @@ const getUserById = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 // Update User
 const updateOneUser = (id, user) => __awaiter(void 0, void 0, void 0, function* () {
-    if (yield user_model_1.User.isExists(Number(Number(id)))) {
+    console.log(id);
+    if (yield user_model_1.User.isExists(Number(id))) {
         try {
             const doc = yield user_model_1.User.findOne({ userId: Number(user.userId) });
+            console.log(doc);
             if (doc !== null) {
                 doc.fullName.firstName = user.fullName.firstName
                     ? user.fullName.firstName

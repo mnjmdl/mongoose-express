@@ -89,6 +89,7 @@ const updateOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const { user } = req.body;
         const result = yield user_services_1.UserServices.updateOneUser(id, user);
+        console.log(result);
         res.status(200).json({
             success: true,
             message: 'User Update successfully!',
