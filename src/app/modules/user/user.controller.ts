@@ -4,6 +4,8 @@ import { UserServices } from './user.services';
 import userSchemaZod from './user.validation.zod';
 import { User } from './user.model';
 
+export const maxDuration = 300;
+
 const createUser = async (req: Request, res: Response) => {
   try {
     const { user: userData } = req.body;
