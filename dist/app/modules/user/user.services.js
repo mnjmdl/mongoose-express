@@ -58,40 +58,25 @@ const getUserById = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 // Update User
 const updateOneUser = (id, user) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(id);
-    if (yield user_model_1.User.isExists(Number(id))) {
-        try {
-            const doc = yield user_model_1.User.findOne({ userId: Number(user.userId) });
-            console.log(doc);
-            if (doc !== null) {
-                doc.fullName.firstName = user.fullName.firstName
-                    ? user.fullName.firstName
-                    : doc.fullName.firstName;
-                doc.fullName.lastName = user.fullName.lastName
-                    ? user.fullName.lastName
-                    : doc.fullName.lastName;
-                doc.age = user.age ? user.age : doc.age;
-                doc.email = user.email ? user.email : doc.email;
-                doc.isActive = user.isActive ? user.isActive : doc.isActive;
-                doc.hobbies = user.hobbies ? user.hobbies : doc.hobbies;
-                doc.address.street = user.address.street
-                    ? user.address.street
-                    : doc.address.street;
-                doc.address.city = user.address.city
-                    ? user.address.city
-                    : doc.address.city;
-                doc.address.country = user.address.country
-                    ? user.address.country
-                    : doc.address.country;
-                yield (doc === null || doc === void 0 ? void 0 : doc.save());
-            }
-        }
-        catch (err) {
-            throw new Error(err.message);
-        }
+    try {
+        const update = yield user_model_1.User.findOneAndUpdate({ userId: Number(id) }, {
+            'fullName.firstName': user.fullName.firstName,
+            'fullName.lastName': user.fullName.lastName,
+            age: user.age,
+            password: user.password,
+            email: user.email,
+            isActive: user.isActive,
+            hobbies: user.hobbies,
+            'address.street': user.address.street,
+            'address.city': user.address.city,
+            'address.country': user.address.country,
+        }, {
+            returnOriginal: false,
+        }).select({ orders: 0, _id: 0, password: 0, __v: 0 });
+        return update;
     }
-    else {
-        throw new Error(`User ID: ${user.userId} not exists`);
+    catch (err) {
+        throw new Error(err.message);
     }
 });
 // Delete User

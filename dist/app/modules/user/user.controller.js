@@ -12,10 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserControllers = void 0;
+exports.UserControllers = exports.maxDuration = void 0;
 const user_services_1 = require("./user.services");
 const user_validation_zod_1 = __importDefault(require("./user.validation.zod"));
 const user_model_1 = require("./user.model");
+exports.maxDuration = 300;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { user: userData } = req.body;
@@ -89,7 +90,7 @@ const updateOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const { user } = req.body;
         const result = yield user_services_1.UserServices.updateOneUser(id, user);
-        console.log(result);
+        // console.log(result);
         res.status(200).json({
             success: true,
             message: 'User Update successfully!',
