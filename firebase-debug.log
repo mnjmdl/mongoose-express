@@ -1,0 +1,92 @@
+[debug] [2023-11-25T07:48:53.628Z] ----------------------------------------------------------------------
+[debug] [2023-11-25T07:48:53.630Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\cmamanojm\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2023-11-25T07:48:53.630Z] CLI Version:   12.9.1
+[debug] [2023-11-25T07:48:53.630Z] Platform:      win32
+[debug] [2023-11-25T07:48:53.631Z] Node Version:  v18.17.1
+[debug] [2023-11-25T07:48:53.637Z] Time:          Sat Nov 25 2023 13:48:53 GMT+0600 (Bangladesh Standard Time)
+[debug] [2023-11-25T07:48:53.637Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-11-25T07:48:53.739Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-11-25T07:48:53.740Z] > authorizing via signed-in user (manoj.mandol@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\ProgrammingHero\Level 2\Assignment\Assignment-2\mongoose-express
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-11-25T07:48:59.327Z] Using project from CLI flag: mongoose-express
+[debug] [2023-11-25T07:48:59.328Z] > refreshing access token with scopes: []
+[debug] [2023-11-25T07:48:59.330Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-11-25T07:48:59.330Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-11-25T07:49:06.503Z] *** [apiv2] error from fetch(https://www.googleapis.com/oauth2/v3/token, {"headers":{},"method":"POST","body":{"_overheadLength":545,"_valueLength":212,"_valuesToMeasure":[],"writable":false,"readable":true,"dataSize":0,"maxDataSize":2097152,"pauseStreams":true,"_released":true,"_streams":[],"_currentStream":null,"_insideLoop":false,"_pendingNext":false,"_boundary":"--------------------------139196637805817550271692","_events":{},"_eventsCount":1}}): FetchError: request to https://www.googleapis.com/oauth2/v3/token failed, reason: getaddrinfo ENOTFOUND www.googleapis.com
+[debug] [2023-11-25T07:49:06.503Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2023-11-25T07:49:11.512Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\cmamanojm\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:254:49)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-11-25T07:49:24.313Z] ----------------------------------------------------------------------
+[debug] [2023-11-25T07:49:24.315Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\cmamanojm\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2023-11-25T07:49:24.316Z] CLI Version:   12.9.1
+[debug] [2023-11-25T07:49:24.316Z] Platform:      win32
+[debug] [2023-11-25T07:49:24.316Z] Node Version:  v18.17.1
+[debug] [2023-11-25T07:49:24.317Z] Time:          Sat Nov 25 2023 13:49:24 GMT+0600 (Bangladesh Standard Time)
+[debug] [2023-11-25T07:49:24.317Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-11-25T07:49:24.415Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-11-25T07:49:24.415Z] > authorizing via signed-in user (manoj.mandol@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\ProgrammingHero\Level 2\Assignment\Assignment-2\mongoose-express
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-11-25T07:49:32.599Z] Using project from CLI flag: mongoose-express
+[debug] [2023-11-25T07:49:32.600Z] > refreshing access token with scopes: []
+[debug] [2023-11-25T07:49:32.602Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-11-25T07:49:32.602Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-11-25T07:49:44.703Z] *** [apiv2] error from fetch(https://www.googleapis.com/oauth2/v3/token, {"headers":{},"method":"POST","body":{"_overheadLength":545,"_valueLength":212,"_valuesToMeasure":[],"writable":false,"readable":true,"dataSize":0,"maxDataSize":2097152,"pauseStreams":true,"_released":true,"_streams":[],"_currentStream":null,"_insideLoop":false,"_pendingNext":false,"_boundary":"--------------------------762122692479746814181849","_events":{},"_eventsCount":1}}): FetchError: request to https://www.googleapis.com/oauth2/v3/token failed, reason: getaddrinfo ENOTFOUND www.googleapis.com
+[debug] [2023-11-25T07:49:44.703Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2023-11-25T07:49:49.715Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\cmamanojm\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:254:49)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+[error] 
+[error] Error: An unexpected error has occurred.
