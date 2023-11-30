@@ -16,6 +16,7 @@ exports.UserControllers = exports.maxDuration = void 0;
 const user_services_1 = require("./user.services");
 const user_validation_zod_1 = __importDefault(require("./user.validation.zod"));
 const user_model_1 = require("./user.model");
+const zod_validation_error_1 = require("zod-validation-error");
 exports.maxDuration = 300;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -32,11 +33,26 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }
     catch (err) {
-        res.status(500).json({
-            success: false,
-            message: err.message || `Something wrong.`,
-            error: err,
-        });
+        if (err.name == 'ZodError') {
+            // res.status(500).json({
+            //   success: false,
+            //   message: err.issues[0].message || `Something wrong.`,
+            //   error: err.issues[0],
+            // });
+            const validationError = (0, zod_validation_error_1.fromZodError)(err);
+            res.status(500).json({
+                success: false,
+                message: validationError.details[0].message || `Something wrong.`,
+                error: validationError.details[0],
+            });
+        }
+        else {
+            res.status(500).json({
+                success: false,
+                message: err.message || `Something wrong.`,
+                error: err,
+            });
+        }
     }
 });
 // Get All User

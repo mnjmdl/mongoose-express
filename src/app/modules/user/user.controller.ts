@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { UserServices } from './user.services';
 import userSchemaZod from './user.validation.zod';
 import { User } from './user.model';
+import { fromZodError } from 'zod-validation-error';
 
 export const maxDuration = 300;
 
@@ -23,11 +24,25 @@ const createUser = async (req: Request, res: Response) => {
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message || `Something wrong.`,
-      error: err,
-    });
+    if (err.name == 'ZodError') {
+      // res.status(500).json({
+      //   success: false,
+      //   message: err.issues[0].message || `Something wrong.`,
+      //   error: err.issues[0],
+      // });
+      const validationError = fromZodError(err);
+      res.status(500).json({
+        success: false,
+        message: validationError.details[0].message || `Something wrong.`,
+        error: validationError.details[0],
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        message: err.message || `Something wrong.`,
+        error: err,
+      });
+    }
   }
 };
 

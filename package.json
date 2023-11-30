@@ -24,7 +24,8 @@
     "nodemon": "^3.0.1",
     "ts-node-dev": "^2.0.0",
     "vercel": "^32.5.6",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zod-validation-error": "^2.1.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
