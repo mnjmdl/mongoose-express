@@ -12,5 +12,6 @@
     nodemon,
     ts-node-dev,
     vercel,
-    zod
+    zod,
+    zod-validation-error
 3.  Run the commane from root folder in command : "npm run start:dev"
