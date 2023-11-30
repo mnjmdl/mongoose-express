@@ -18,12 +18,9 @@ const createUserIntoDB = (user) => __awaiter(void 0, void 0, void 0, function* (
     }
     else {
         const newUser = yield user_model_1.User.create(user);
-        if (newUser) {
-            const result = yield user_model_1.User.findOne({
-                userId: { $eq: Number(user.userId) },
-            }).select({ _id: 0, password: 0, __v: 0 });
-            return result;
-        }
+        newUser.password = undefined;
+        newUser.orders = undefined;
+        return newUser;
     }
 });
 // Get All User
@@ -48,6 +45,7 @@ const getUserById = (id) => __awaiter(void 0, void 0, void 0, function* () {
         const user = yield user_model_1.User.findOne({ userId: { $eq: Number(id) } }).select({
             _id: 0,
             password: 0,
+            orders: 0,
             __v: 0,
         });
         return user;

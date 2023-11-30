@@ -8,7 +8,7 @@ export const maxDuration = 300;
 
 const createUser = async (req: Request, res: Response) => {
   try {
-    const { user: userData } = req.body;
+    const userData = req.body;
 
     // data validation using zod
     const userValidateData = userSchemaZod.parse(userData);
@@ -81,9 +81,8 @@ const getUserById = async (req: Request, res: Response) => {
 const updateOneUser = async (req: Request, res: Response) => {
   const { userId: id } = req.params;
   try {
-    const { user } = req.body;
+    const user = req.body;
     const result = await UserServices.updateOneUser(id, user);
-    // console.log(result);
     res.status(200).json({
       success: true,
       message: 'User Update successfully!',
@@ -127,7 +126,7 @@ const deleteUserById = async (req: Request, res: Response) => {
 const updateOrder = async (req: Request, res: Response) => {
   const { userId: id } = req.params;
   try {
-    const { order } = req.body;
+    const order = req.body;
     const result = await UserServices.updateOrder(id, order);
     res.status(200).json({
       success: true,

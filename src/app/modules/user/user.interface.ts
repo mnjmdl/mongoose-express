@@ -17,7 +17,7 @@ export type IOrder = {
   quantity: number;
 };
 
-export type IUser = {
+export interface IUser {
   userId: number;
   username: string;
   password: string;
@@ -28,7 +28,7 @@ export type IUser = {
   hobbies?: string[];
   address: Address;
   orders?: IOrder[];
-};
+}
 
 export interface UserModel extends Model<IUser> {
   isExists(userId: number): Promise<IUser> | null;

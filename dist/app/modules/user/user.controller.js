@@ -19,7 +19,7 @@ const user_model_1 = require("./user.model");
 exports.maxDuration = 300;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { user: userData } = req.body;
+        const userData = req.body;
         // data validation using zod
         const userValidateData = user_validation_zod_1.default.parse(userData);
         // const result = await UserServices.createUserIntoDB(userData);
@@ -88,9 +88,8 @@ const getUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 const updateOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId: id } = req.params;
     try {
-        const { user } = req.body;
+        const user = req.body;
         const result = yield user_services_1.UserServices.updateOneUser(id, user);
-        // console.log(result);
         res.status(200).json({
             success: true,
             message: 'User Update successfully!',
@@ -134,7 +133,7 @@ const deleteUserById = (req, res) => __awaiter(void 0, void 0, void 0, function*
 const updateOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId: id } = req.params;
     try {
-        const { order } = req.body;
+        const order = req.body;
         const result = yield user_services_1.UserServices.updateOrder(id, order);
         res.status(200).json({
             success: true,

@@ -61,7 +61,7 @@ userSchema.statics.isExists = async function (id: string) {
 userSchema.pre('save', async function (next) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const user = this;
-  user.password = await bcrypt.hash(
+  user.password = bcrypt.hashSync(
     user.password,
     Number(config.bcrypt_salt_rounds),
   );

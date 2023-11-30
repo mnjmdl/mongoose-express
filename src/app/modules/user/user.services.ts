@@ -7,13 +7,10 @@ const createUserIntoDB = async (user: IUser) => {
   if (await User.isExists(Number(user.userId))) {
     throw new Error(`User ID: ${user.userId} already exists`);
   } else {
-    const newUser = await User.create(user);
-    if (newUser) {
-      const result = await User.findOne({
-        userId: { $eq: Number(user.userId) },
-      }).select({ _id: 0, password: 0, __v: 0 });
-      return result;
-    }
+    const newUser: Partial<IUser> = await User.create(user);
+    newUser.password = undefined;
+    newUser.orders = undefined;
+    return newUser;
   }
 };
 
@@ -38,6 +35,7 @@ const getUserById = async (id: string) => {
     const user = await User.findOne({ userId: { $eq: Number(id) } }).select({
       _id: 0,
       password: 0,
+      orders: 0,
       __v: 0,
     });
     return user;
